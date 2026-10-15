@@ -1,0 +1,62 @@
+/* Tacilytics admin — follows the WordPress admin look, Tacilytics teal as accent. */
+.tacilytics-wrap { max-width: 980px; }
+.tacilytics-title { display: flex; align-items: center; gap: 10px; }
+.tacilytics-logo {
+	width: 28px; height: 28px; border-radius: 8px; display: inline-block;
+	background: radial-gradient(circle at 30% 30%, #5eead4, #0f766e 70%);
+	box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .25);
+}
+.tacilytics-lead { font-size: 15px; max-width: 680px; color: #3c434a; }
+
+.tacilytics-choices { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 20px; }
+.tacilytics-choice {
+	display: flex; flex-direction: column; gap: 8px; padding: 24px; border-radius: 10px;
+	background: #fff; border: 1px solid #dcdcde; text-decoration: none; color: #1d2327;
+	transition: border-color .15s, box-shadow .15s, transform .15s;
+}
+.tacilytics-choice:hover, .tacilytics-choice:focus { border-color: #0d9488; box-shadow: 0 4px 16px rgba(13, 148, 136, .14); transform: translateY(-1px); color: #1d2327; }
+.tacilytics-choice:focus { outline: 2px solid #0d9488; outline-offset: 2px; }
+.tacilytics-choice strong { font-size: 17px; }
+.tacilytics-choice span { color: #50575e; line-height: 1.5; }
+.tacilytics-choice-icon { font-size: 30px; width: 30px; height: 30px; color: #0d9488 !important; }
+.tacilytics-choice-cta { margin-top: auto; padding-top: 8px; font-weight: 600; color: #0d9488 !important; }
+.tacilytics-price { display: inline-block; align-self: flex-start; padding: 3px 10px; border-radius: 99px; background: #ccfbf1; color: #115e59 !important; font-weight: 600; font-size: 12px; }
+
+.tacilytics-card { background: #fff; border: 1px solid #dcdcde; border-radius: 10px; padding: 8px 24px 16px; margin-top: 16px; }
+.tacilytics-card h2 { margin-top: 20px; }
+.tacilytics-steps li, .tacilytics-checks li { margin-bottom: 6px; }
+.tacilytics-checks { list-style: none; margin-left: 0; }
+.tacilytics-checks li::before { content: "✓"; color: #0d9488; font-weight: 700; margin-right: 8px; }
+.tacilytics-soon { padding: 12px 14px; background: #f0fdfa; border-left: 4px solid #0d9488; }
+
+.tacilytics-status { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 14px 18px; margin-top: 16px; background: #f0fdfa; border: 1px solid #99f6e4; border-radius: 10px; }
+.tacilytics-dot { width: 10px; height: 10px; border-radius: 50%; background: #14b8a6; box-shadow: 0 0 0 4px rgba(20, 184, 166, .2); }
+.tacilytics-mode { margin-left: auto; font-size: 12px; padding: 2px 10px; border-radius: 99px; background: #fff; border: 1px solid #99f6e4; color: #115e59; }
+.tacilytics-roles { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 6px 16px; max-width: 640px; }
+.tacilytics-roles .description { grid-column: 1 / -1; margin-top: 4px; }
+.tacilytics-role { display: block; }
+
+.tacilytics-actions { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; padding: 14px 24px; }
+.tacilytics-actions form { margin: 0; }
+.tacilytics-reset { margin-left: auto !important; }
+.tacilytics-reset .button-link-delete { color: #b32d2e; }
+
+/* Dashboard widget */
+.tacilytics-widget .tacilytics-kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px; }
+.tacilytics-kpi-value { display: block; font-size: 22px; font-weight: 600; line-height: 1.2; color: #1d2327; }
+.tacilytics-kpi-label { color: #646970; font-size: 12px; }
+.tacilytics-kpi-label em { font-style: normal; margin-left: 4px; font-weight: 600; }
+.tacilytics-kpi-label em.up { color: #0f766e; }
+.tacilytics-kpi-label em.down { color: #b32d2e; }
+.tacilytics-chart { width: 100%; height: 70px; display: block; margin: 4px 0 14px; }
+.tacilytics-chart rect { fill: #14b8a6; }
+.tacilytics-chart rect.tacilytics-baseline { fill: #c3c4c7; }
+.tacilytics-chart rect:hover { fill: #0f766e; }
+.tacilytics-lists { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.tacilytics-lists h3 { margin: 0 0 6px; font-size: 13px; }
+.tacilytics-lists ol { margin: 0; list-style: none; }
+.tacilytics-lists li { display: flex; justify-content: space-between; gap: 8px; margin: 0 0 4px; }
+.tacilytics-lists li span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tacilytics-empty { color: #646970; }
+.tacilytics-more { margin: 12px 0 0; text-align: right; }
+.tacilytics-error { color: #b32d2e; }

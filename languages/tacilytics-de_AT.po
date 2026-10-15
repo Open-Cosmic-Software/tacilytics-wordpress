@@ -1,0 +1,239 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Tacilytics 1.0.0\n"
+"Language: de_AT\n"
+"PO-Revision-Date: 2026-10-15 13:00+0000\n"
+"Last-Translator: Nyx <nyx@ff-web.de>\n"
+"Language-Team: German\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Settings"
+msgstr "Einstellungen"
+
+msgid "Tacilytics"
+msgstr "Tacilytics"
+
+msgid "Tacilytics is installed but not counting yet."
+msgstr "Tacilytics ist installiert, zählt aber noch nicht."
+
+msgid "Finish the setup"
+msgstr "Einrichtung abschließen"
+
+msgid "You are not allowed to do this."
+msgstr "Dazu hast du keine Berechtigung."
+
+msgid "Tracker script reachable."
+msgstr "Tracker-Skript erreichbar."
+
+msgid "API key works: %d visitors today."
+msgstr "API-Schlüssel funktioniert: heute %d Besucher."
+
+msgid "Cookieless analytics: no cookies, no IP addresses stored, no personal profiles. Where should your statistics live?"
+msgstr "Statistik ohne Cookies: keine Cookies, keine gespeicherten IP-Adressen, keine Personenprofile. Wo sollen deine Statistiken liegen?"
+
+msgid "Self-hosted"
+msgstr "Selbst gehostet"
+
+msgid "You run Tacilytics on your own server (open source, MIT). Free forever, your data never leaves your server."
+msgstr "Du betreibst Tacilytics auf deinem eigenen Server (Open Source, MIT). Für immer kostenlos, deine Daten verlassen nie deinen Server."
+
+msgid "Connect my server →"
+msgstr "Meinen Server verbinden →"
+
+msgid "Tacilytics Cloud"
+msgstr "Tacilytics Cloud"
+
+msgid "We host it for you in Germany. Nothing to install or maintain."
+msgstr "Wir hosten es für dich in Deutschland. Nichts zu installieren oder zu warten."
+
+msgid "90 days free, then €1.99 per site per month"
+msgstr "90 Tage kostenlos, danach 1,99 € pro Website und Monat"
+
+msgid "Use Tacilytics Cloud →"
+msgstr "Tacilytics Cloud nutzen →"
+
+msgid "Back"
+msgstr "Zurück"
+
+msgid "Connect your Tacilytics server"
+msgstr "Deinen Tacilytics-Server verbinden"
+
+msgid "In your Tacilytics dashboard, add this site (the domain below)."
+msgstr "Füge diese Website in deinem Tacilytics-Dashboard hinzu (die Domain unten)."
+
+msgid "Enter the address of your dashboard here and save."
+msgstr "Trag hier die Adresse deines Dashboards ein und speichere."
+
+msgid "Save and start counting"
+msgstr "Speichern und loszählen"
+
+msgid "No server yet? Tacilytics is open source: %s"
+msgstr "Noch keinen Server? Tacilytics ist Open Source: %s"
+
+msgid "Hosted in Germany, data processing agreement included"
+msgstr "Gehostet in Deutschland, inklusive Auftragsverarbeitungsvertrag (AVV)"
+
+msgid "Up to 50,000 page views per site and month for €1.99"
+msgstr "Bis zu 50.000 Seitenaufrufe pro Website und Monat für 1,99 €"
+
+msgid "First 90 days free, no credit card needed to start"
+msgstr "Die ersten 90 Tage kostenlos, ohne Kreditkarte"
+
+msgid "Cancel any time, export your data as CSV"
+msgstr "Jederzeit kündbar, Daten als CSV exportierbar"
+
+msgid "Coming soon."
+msgstr "Bald verfügbar."
+
+msgid "Tacilytics Cloud is opening shortly. Until then you can use your own server, it takes about five minutes."
+msgstr "Tacilytics Cloud startet in Kürze. Bis dahin kannst du deinen eigenen Server nutzen, das dauert etwa fünf Minuten."
+
+msgid "Use my own server instead"
+msgstr "Stattdessen eigenen Server nutzen"
+
+msgid "After saving, create your free Cloud account with this domain. Your API key is shown in the Cloud dashboard."
+msgstr "Lege nach dem Speichern dein kostenloses Cloud-Konto mit dieser Domain an. Deinen API-Schlüssel findest du im Cloud-Dashboard."
+
+msgid "Connect to Tacilytics Cloud"
+msgstr "Mit Tacilytics Cloud verbinden"
+
+msgid "Counting %1$s on %2$s"
+msgstr "Zählt %1$s auf %2$s"
+
+msgid "Cloud"
+msgstr "Cloud"
+
+msgid "Connection"
+msgstr "Verbindung"
+
+msgid "API key (optional)"
+msgstr "API-Schlüssel (optional)"
+
+msgid "Shows your numbers on the WordPress dashboard. Create a read-only key in Tacilytics under Settings → Security → API keys. The key stays on your server and is never sent to visitors."
+msgstr "Zeigt deine Zahlen im WordPress-Dashboard. Leg in Tacilytics unter Einstellungen → Sicherheit → API-Schlüssel einen Schlüssel nur zum Lesen an. Der Schlüssel bleibt auf deinem Server und wird nie an Besucher geschickt."
+
+msgid "What to count"
+msgstr "Was gezählt wird"
+
+msgid "Automatic events"
+msgstr "Automatische Ereignisse"
+
+msgid "Clicks on links to other websites"
+msgstr "Klicks auf Links zu anderen Websites"
+
+msgid "File downloads (PDF, ZIP, …)"
+msgstr "Datei-Downloads (PDF, ZIP, …)"
+
+msgid "Site search: search terms and whether there were results"
+msgstr "Suche auf der Website: Suchbegriffe und ob es Treffer gab"
+
+msgid "Broken links (404 pages)"
+msgstr "Kaputte Links (404-Seiten)"
+
+msgid "WooCommerce purchases with revenue (no customer data)"
+msgstr "WooCommerce-Käufe mit Umsatz (ohne Kundendaten)"
+
+msgid "Do not count"
+msgstr "Nicht zählen"
+
+msgid "Visits of logged-in users with these roles are not counted, also on cached pages. The browser is remembered until the user logs in with another role."
+msgstr "Besuche angemeldeter Nutzer mit diesen Rollen werden nicht gezählt, auch auf gecachten Seiten. Der Browser wird gemerkt, bis sich dort jemand mit einer anderen Rolle anmeldet."
+
+msgid "Privacy"
+msgstr "Datenschutz"
+
+msgid "Respect \"Do Not Track\" and Global Privacy Control"
+msgstr "„Do Not Track“ und Global Privacy Control respektieren"
+
+msgid "Test connection"
+msgstr "Verbindung testen"
+
+msgid "Open dashboard"
+msgstr "Dashboard öffnen"
+
+msgid "Disconnect this site? Tracking stops until you set it up again. Data on the server is not deleted."
+msgstr "Diese Website trennen? Es wird nicht mehr gezählt, bis du sie wieder einrichtest. Die Daten auf dem Server bleiben erhalten."
+
+msgid "Disconnect"
+msgstr "Trennen"
+
+msgid "Server address"
+msgstr "Server-Adresse"
+
+msgid "The address of your Tacilytics dashboard."
+msgstr "Die Adresse deines Tacilytics-Dashboards."
+
+msgid "Site domain"
+msgstr "Domain der Website"
+
+msgid "Must match the site in Tacilytics exactly (without www.)."
+msgstr "Muss genau mit der Website in Tacilytics übereinstimmen (ohne www.)."
+
+msgid "Tacilytics is not set up yet."
+msgstr "Tacilytics ist noch nicht eingerichtet."
+
+msgid "No API key saved."
+msgstr "Kein API-Schlüssel gespeichert."
+
+msgid "The API key was rejected. Check that it belongs to this server and has access to this site."
+msgstr "Der API-Schlüssel wurde abgelehnt. Prüfe, ob er zu diesem Server gehört und Zugriff auf diese Website hat."
+
+msgid "This site was not found on the server. Add it in your Tacilytics dashboard first."
+msgstr "Diese Website gibt es auf dem Server nicht. Füge sie zuerst in deinem Tacilytics-Dashboard hinzu."
+
+msgid "Unexpected answer from the server (HTTP %d)."
+msgstr "Unerwartete Antwort vom Server (HTTP %d)."
+
+msgid "The tracker script was not found on this server (HTTP %d). Is the address right?"
+msgstr "Das Tracker-Skript wurde auf diesem Server nicht gefunden (HTTP %d). Stimmt die Adresse?"
+
+msgid "Tacilytics – last 7 days"
+msgstr "Tacilytics – letzte 7 Tage"
+
+msgid "Set it up"
+msgstr "Jetzt einrichten"
+
+msgid "Tracking is active. Add a read-only API key to see your numbers here."
+msgstr "Es wird gezählt. Hinterlege einen API-Schlüssel nur zum Lesen, um deine Zahlen hier zu sehen."
+
+msgid "Add API key"
+msgstr "API-Schlüssel hinzufügen"
+
+msgid "Visitors"
+msgstr "Besucher"
+
+msgid "Page views"
+msgstr "Seitenaufrufe"
+
+msgid "Revenue"
+msgstr "Umsatz"
+
+msgid "Bounce rate"
+msgstr "Absprungrate"
+
+msgid "Top pages"
+msgstr "Top-Seiten"
+
+msgid "Top sources"
+msgstr "Top-Quellen"
+
+msgid "Open full dashboard →"
+msgstr "Ganzes Dashboard öffnen →"
+
+msgid "Visitors per day"
+msgstr "Besucher pro Tag"
+
+msgid "No data yet"
+msgstr "Noch keine Daten"
+
+msgid "The server address must start with https:// (http is only allowed for localhost)."
+msgstr "Die Server-Adresse muss mit https:// beginnen (http ist nur für localhost erlaubt)."
+
+msgid "Please enter a valid domain, e.g. example.com."
+msgstr "Bitte gib eine gültige Domain ein, z. B. example.com."
+
+msgid "API keys start with tk_. Create a read-only key under Settings → Security in your Tacilytics dashboard."
+msgstr "API-Schlüssel beginnen mit tk_. Leg in deinem Tacilytics-Dashboard unter Einstellungen → Sicherheit einen Schlüssel nur zum Lesen an."

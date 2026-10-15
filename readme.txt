@@ -8,18 +8,15 @@ Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Cookieless website statistics for WordPress and WooCommerce. Self-host Tacilytics for free or use Tacilytics Cloud.
+Cookieless website statistics for WordPress and WooCommerce, with your own self-hosted Tacilytics server.
 
 == Description ==
 
 Tacilytics counts visitors without cookies, without storing IP addresses and without building personal profiles. Unique visitors are counted with a daily rotating, salted one-way hash that cannot be turned back into a person.
 
-This plugin connects your WordPress site to a Tacilytics server and adds the tracker for you.
+This plugin connects your WordPress site to your own Tacilytics server and adds the tracker for you.
 
-**Two ways to use it**
-
-* **Self-hosted (free):** run the open-source Tacilytics server ([GitHub](https://github.com/Open-Cosmic-Software/tacilytics), MIT licence) and enter its address. Your data stays on your server.
-* **Tacilytics Cloud:** we host it for you in Germany. 90 days free, then €1.99 per site and month (up to 50,000 page views per month). *Opening soon.*
+Run the open-source Tacilytics server ([GitHub](https://github.com/Open-Cosmic-Software/tacilytics), MIT licence) and enter its address. Your data stays on your server. A hosted version (Tacilytics Cloud) is planned; it is not available yet and this plugin does not contact it.
 
 **What it counts**
 
@@ -41,22 +38,18 @@ This plugin connects your WordPress site to a Tacilytics server and adds the tra
 
 == External services ==
 
-This plugin sends page views and events from your visitors' browsers to the Tacilytics server you choose, and the WordPress backend reads statistics from it. Nothing is sent before you finish the setup.
+This plugin uses the Tacilytics server whose address you enter in the settings. That server is run by you (or someone you choose), not by the plugin author. Nothing is loaded or sent before you finish the setup. You are the controller of the data.
 
-**Self-hosted:** data goes only to the server address you enter. You are the controller and the processor.
-
-**Tacilytics Cloud** (`https://cloud.tacilytics.com`): not available yet. This version of the plugin never contacts it; the Cloud option only shows "coming soon". Once the Cloud opens, a plugin update will enable it and this section will link its terms of service and privacy policy.
-
-For both, this is what the tracker sends:
-
+* The tracker script: visitors' browsers load `tacilytics.js` from that server on every front-end page (unless their role is excluded or they opted out).
 * What is sent from the visitor's browser: page path, referrer, UTM parameters, browser language and time zone, time on page and scroll depth, and, if enabled, the events listed above. The server sees the IP address and user agent to compute the daily visitor hash, the country, browser and device type. The IP address is not stored.
 * What is sent from WordPress: the API key you enter and the site domain, to read statistics for the dashboard widget.
+* The plugin never contacts tacilytics.com or any other server than the one you entered. A hosted version (Tacilytics Cloud) is planned but not available; this version of the plugin cannot connect to it. When it opens, a plugin update will add it here together with its terms of service and privacy policy.
 * Tacilytics privacy policy: https://tacilytics.com/privacy
 
 == Installation ==
 
 1. Install and activate the plugin.
-2. Go to **Settings → Tacilytics** and choose **Self-hosted** or **Tacilytics Cloud**.
+2. Go to **Settings → Tacilytics** and choose **Self-hosted**.
 3. Self-hosted: add this site in your Tacilytics dashboard, then enter the dashboard address in WordPress.
 4. Optional: create a read-only API key in Tacilytics (Settings → Security → API keys) and paste it to see your numbers on the WordPress dashboard.
 
@@ -84,7 +77,7 @@ The plugin refuses http addresses (except localhost) and blocks private network 
 
 == Screenshots ==
 
-1. First run: choose self-hosted or Tacilytics Cloud.
+1. First run: connect your self-hosted server.
 2. Settings.
 3. Dashboard widget.
 

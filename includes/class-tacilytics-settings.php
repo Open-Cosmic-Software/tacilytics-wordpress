@@ -168,7 +168,9 @@ final class Tacilytics_Settings {
 		$domain = preg_replace( '#^https?://#', '', $domain );
 		$domain = preg_replace( '#[/?\#].*$#', '', $domain );
 		$domain = preg_replace( '/^www\./', '', $domain );
-		return preg_match( '/^[a-z0-9.-]+\.[a-z0-9-]{2,}$/', $domain ) ? $domain : '';
+		// Labels of 1–63 letters/digits/hyphens, no hyphen at the start or end, no empty label.
+		$label = '[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?';
+		return ( strlen( $domain ) <= 253 && preg_match( '/^(?:' . $label . '\.)+[a-z0-9-]{2,63}$/', $domain ) && '-' !== substr( $domain, -1 ) ) ? $domain : '';
 	}
 
 	/**
@@ -184,6 +186,9 @@ final class Tacilytics_Settings {
 
 		$mode = isset( $input['mode'] ) ? sanitize_key( $input['mode'] ) : $old['mode'];
 		$mode = in_array( $mode, array( '', 'self', 'cloud' ), true ) ? $mode : $old['mode'];
+		if ( 'cloud' === $mode && 'cloud' !== $old['mode'] && ! Tacilytics_Admin::cloud_open() ) {
+			$mode = $old['mode']; // Cloud is not open: a forged form cannot switch to it.
+		}
 
 		if ( isset( $input['server_url'] ) ) {
 			$url = self::clean_server_url( wp_unslash( $input['server_url'] ) );

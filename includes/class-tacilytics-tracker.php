@@ -123,7 +123,15 @@ final class Tacilytics_Tracker {
 			$attrs .= ' ' . esc_attr( $name ) . ( '' === $value ? '' : '="' . esc_attr( $value ) . '"' );
 		}
 		// Only the tag that loads tacilytics.js, not the inline "before" parts.
-		return preg_replace( '#<script(?=[^>]*\ssrc=)#', '<script' . $attrs, $tag, 1 );
+		// Callback, not a replacement string: $0 or \1 inside a value must stay literal.
+		return preg_replace_callback(
+			'#<script(?=[^>]*\ssrc=)#',
+			static function () use ( $attrs ) {
+				return '<script' . $attrs;
+			},
+			$tag,
+			1
+		);
 	}
 
 	/**

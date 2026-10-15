@@ -1,8 +1,8 @@
 <?php
 /**
  * Plugin Name:       Tacilytics – Privacy-Friendly Analytics
- * Plugin URI:        https://tacilytics.com/wordpress
- * Description:       Cookieless, privacy-friendly analytics for WordPress and WooCommerce. Use your own self-hosted Tacilytics server or Tacilytics Cloud. No cookies, no consent banner needed for the tracker.
+ * Plugin URI:        https://tacilytics.com/
+ * Description:       Cookieless, privacy-friendly analytics for WordPress and WooCommerce. Connects your site to your own self-hosted Tacilytics server. No cookies, no stored IP addresses.
  * Version:           1.0.0
  * Requires at least: 6.3
  * Requires PHP:      7.4

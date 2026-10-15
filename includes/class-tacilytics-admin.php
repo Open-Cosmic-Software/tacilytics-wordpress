@@ -164,7 +164,8 @@ final class Tacilytics_Admin {
 
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- only switches which form is shown.
 		$choose = isset( $_GET['mode'] ) ? sanitize_key( wp_unslash( $_GET['mode'] ) ) : '';
-		if ( '' === $s['mode'] && ! in_array( $choose, array( 'self', 'cloud' ), true ) ) {
+		$modes  = self::cloud_open() ? array( 'self', 'cloud' ) : array( 'self' );
+		if ( '' === $s['mode'] && ! in_array( $choose, $modes, true ) ) {
 			self::render_choice();
 		} elseif ( '' === $s['mode'] ) {
 			self::render_setup( $choose, $s );
@@ -190,6 +191,21 @@ final class Tacilytics_Admin {
 	}
 
 	/**
+	 * Whether Tacilytics Cloud accepts sign-ups. Flipped in a later plugin release once the
+	 * service is live; until then the plugin never contacts the Cloud and offers no Cloud setup.
+	 *
+	 * @return bool
+	 */
+	public static function cloud_open() {
+		/**
+		 * Whether Tacilytics Cloud accepts sign-ups.
+		 *
+		 * @param bool $open Cloud open for sign-ups.
+		 */
+		return (bool) apply_filters( 'tacilytics_cloud_open', false );
+	}
+
+	/**
 	 * Step 1: choose self-hosted or Cloud.
 	 */
 	private static function render_choice() {
@@ -203,6 +219,7 @@ final class Tacilytics_Admin {
 				<span><?php esc_html_e( 'You run Tacilytics on your own server (open source, MIT). Free forever, your data never leaves your server.', 'tacilytics' ); ?></span>
 				<span class="tacilytics-choice-cta"><?php esc_html_e( 'Connect my server →', 'tacilytics' ); ?></span>
 			</a>
+			<?php if ( self::cloud_open() ) : ?>
 			<a class="tacilytics-choice tacilytics-choice-cloud" href="<?php echo esc_url( add_query_arg( 'mode', 'cloud', $base ) ); ?>">
 				<span class="tacilytics-choice-icon dashicons dashicons-cloud" aria-hidden="true"></span>
 				<strong><?php esc_html_e( 'Tacilytics Cloud', 'tacilytics' ); ?></strong>
@@ -210,6 +227,14 @@ final class Tacilytics_Admin {
 				<span class="tacilytics-price"><?php esc_html_e( '90 days free, then €1.99 per site per month', 'tacilytics' ); ?></span>
 				<span class="tacilytics-choice-cta"><?php esc_html_e( 'Use Tacilytics Cloud →', 'tacilytics' ); ?></span>
 			</a>
+			<?php else : ?>
+			<div class="tacilytics-choice tacilytics-choice-cloud is-disabled" aria-disabled="true">
+				<span class="tacilytics-choice-icon dashicons dashicons-cloud" aria-hidden="true"></span>
+				<strong><?php esc_html_e( 'Tacilytics Cloud', 'tacilytics' ); ?></strong>
+				<span><?php esc_html_e( 'A hosted version is planned. It is not available yet, and this plugin does not contact it.', 'tacilytics' ); ?></span>
+				<span class="tacilytics-choice-cta"><?php esc_html_e( 'Coming soon', 'tacilytics' ); ?></span>
+			</div>
+			<?php endif; ?>
 		</div>
 		<?php
 	}
@@ -224,7 +249,7 @@ final class Tacilytics_Admin {
 		$back = admin_url( 'options-general.php?page=' . self::PAGE );
 		echo '<p><a href="' . esc_url( $back ) . '">&larr; ' . esc_html__( 'Back', 'tacilytics' ) . '</a></p>';
 
-		if ( 'cloud' === $mode ) {
+		if ( 'cloud' === $mode && self::cloud_open() ) {
 			self::render_cloud_setup( $s );
 			return;
 		}
@@ -269,7 +294,7 @@ final class Tacilytics_Admin {
 		 *
 		 * @param bool $open Cloud open for sign-ups.
 		 */
-		$open = (bool) apply_filters( 'tacilytics_cloud_open', false );
+		$open = self::cloud_open();
 		?>
 		<div class="tacilytics-card">
 			<h2><?php esc_html_e( 'Tacilytics Cloud', 'tacilytics' ); ?></h2>

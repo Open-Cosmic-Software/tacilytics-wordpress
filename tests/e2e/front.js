@@ -6,8 +6,8 @@ const ok = [], bad = []; const t = (n, c, i) => (c ? ok : bad).push(n + (c ? '' 
 (async () => {
   const b = await chromium.launch({ args: ['--host-resolver-rules=MAP tacilytics.test ' + IP + ', MAP taci-wp.test 127.0.0.1:8931'] });
   const { execFileSync } = require('child_process');
-  let since = 0; const hitDb = () => JSON.parse(execFileSync('sqlite3', ['-json', (process.env.TACI_DB || '/tmp/taci-wptest/app/t.db'), `select name n, path p, props pr from events where id > ${since} order by id`], { encoding: 'utf8' }) || '[]').map((x) => ({ ...x, pr: x.pr ? JSON.parse(x.pr) : null }));
-  const mark = () => { since = Number(execFileSync('sqlite3', [(process.env.TACI_DB || '/tmp/taci-wptest/app/t.db'), 'select coalesce(max(id),0) from events'], { encoding: 'utf8' }).trim()); };
+  let since = 0; const hitDb = () => JSON.parse(execFileSync('sqlite3', ['-json', '/tmp/taci-wptest/app/t.db', `select name n, path p, props pr from events where id > ${since} order by id`], { encoding: 'utf8' }) || '[]').map((x) => ({ ...x, pr: x.pr ? JSON.parse(x.pr) : null }));
+  const mark = () => { since = Number(execFileSync('sqlite3', ['/tmp/taci-wptest/app/t.db', 'select coalesce(max(id),0) from events'], { encoding: 'utf8' }).trim()); };
   const hit = { get length() { return hitDb().length; }, set length(v) { mark(); }, filter: (f) => hitDb().filter(f) };
   const watch = () => {};
   const login = async (p, u, pw) => { await p.goto(BASE + '/wp-login.php'); await p.fill('#user_login', u); await p.fill('#user_pass', pw); await p.click('#wp-submit'); await p.waitForLoadState(); };
@@ -71,6 +71,12 @@ const ok = [], bad = []; const t = (n, c, i) => (c ? ok : bad).push(n + (c ? '' 
   await p.goto(BASE + '/wp-login.php?action=logout'); await p.click('a:has-text("log out")').catch(() => {}); await p.waitForLoadState();
   await login(p, 'sub', 'sub-pass-123'); await p.goto(BASE + '/'); await p.waitForTimeout(300);
   t('own opt-out survives excluded→counted role', (await p.evaluate(() => localStorage.getItem('tacilytics_ignore'))) === '1' && wpAfterAdmin === null, 'wp after admin=' + wpAfterAdmin + ' ignore=' + (await p.evaluate(() => localStorage.getItem('tacilytics_ignore'))));
+  await ctx.close();
+
+  // Tyto (d): attribute value with $0 / \1 survives literally
+  ctx = await b.newContext({ userAgent: UA }); p = await ctx.newPage(); await p.goto(BASE + '/');
+  const dv = await p.evaluate(() => { const s = document.querySelector('script[src*="tacilytics.js"]'); return s && s.getAttribute('data-taci-test'); });
+  t('attribute with $0 and \\1 kept literally', dv === 'a$0b\\1c', dv);
   await ctx.close();
 
   console.log('OK ' + ok.length + ' / BAD ' + bad.length); bad.forEach((x) => console.log('  ✗ ' + x));

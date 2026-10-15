@@ -60,3 +60,5 @@
 .tacilytics-empty { color: #646970; }
 .tacilytics-more { margin: 12px 0 0; text-align: right; }
 .tacilytics-error { color: #b32d2e; }
+.tacilytics-choice.is-disabled, .tacilytics-choice.is-disabled:hover { cursor: default; opacity: .65; transform: none; box-shadow: none; border-color: #dcdcde; }
+.tacilytics-choice.is-disabled .tacilytics-choice-cta, .tacilytics-choice.is-disabled .tacilytics-choice-icon { color: #787c82 !important; }

@@ -14,10 +14,11 @@ const ok = []; const bad = []; const t = (name, cond, info) => (cond ? ok : bad)
   await p.goto(BASE + '/wp-admin/options-general.php?page=tacilytics');
   t('two choices', await p.locator('.tacilytics-choice').count() === 2);
   await p.screenshot({ path: OUT + '1-choice.png', fullPage: true });
-  await p.click('.tacilytics-choice-cloud'); await p.waitForLoadState();
-  t('cloud coming soon', await p.locator('text=Coming soon.').count() === 1);
+  t('cloud tile is not a link (closed)', (await p.locator('a.tacilytics-choice-cloud').count()) === 0 && (await p.locator('.tacilytics-choice-cloud.is-disabled').count()) === 1);
+  await p.goto(BASE + '/wp-admin/options-general.php?page=tacilytics&mode=cloud');
+  t('?mode=cloud shows no Cloud setup', (await p.locator('text=Connect to Tacilytics Cloud').count()) === 0 && (await p.locator('.tacilytics-choice').count()) === 2);
   await p.screenshot({ path: OUT + '2-cloud.png', fullPage: true });
-  await p.click('text=Use my own server instead'); await p.waitForLoadState();
+  await p.click('.tacilytics-choice >> text=Connect my server'); await p.waitForLoadState();
   // invalid URL first
   await p.fill('#tacilytics-server', 'ftp://evil.example.com/x?y=1'); await p.fill('#tacilytics-domain', 'taci-wp.test');
   await p.click('#submit'); await p.waitForLoadState();
@@ -30,10 +31,10 @@ const ok = []; const bad = []; const t = (name, cond, info) => (cond ? ok : bad)
   await p.click('#submit'); await p.waitForLoadState();
   t('connected status', await p.locator('.tacilytics-status >> text=taci-wp.test').count() === 1, await p.locator('.wrap').innerText());
   // key
-  await p.fill('#tacilytics-api-key', fs.readFileSync(process.env.KEY_FILE || 'key', 'utf8').trim()); await p.click('#submit'); await p.waitForLoadState();
+  await p.fill('#tacilytics-api-key', fs.readFileSync('key', 'utf8').trim()); await p.click('#submit'); await p.waitForLoadState();
   const masked = await p.inputValue('#tacilytics-api-key');
   t('key masked', /^tk_.{4}•+$/.test(masked), masked);
-  t('key not in page source', !(await p.content()).includes(fs.readFileSync(process.env.KEY_FILE || 'key', 'utf8').trim()));
+  t('key not in page source', !(await p.content()).includes(fs.readFileSync('key', 'utf8').trim()));
   // save again with the masked value -> key kept
   await p.click('#submit'); await p.waitForLoadState();
   t('masked save keeps key', (await p.inputValue('#tacilytics-api-key')) === masked);

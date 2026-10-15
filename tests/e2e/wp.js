@@ -4,7 +4,7 @@ const BASE = 'http://taci-wp.test', OUT = (process.env.OUT || '/tmp/tacilytics-w
 fs.mkdirSync(OUT, { recursive: true });
 const ok = []; const bad = []; const t = (name, cond, info) => (cond ? ok : bad).push(name + (cond ? '' : ' → ' + (info || '')));
 (async () => {
-  const b = await chromium.launch({ args: ['--host-resolver-rules=MAP tacilytics.test 172.21.0.4, MAP taci-wp.test 127.0.0.1:8931'] }); const ctx = await b.newContext({ viewport: { width: 1280, height: 900 }, locale: 'en-US' }); const p = await ctx.newPage();
+  const b = await chromium.launch({ args: ['--host-resolver-rules=MAP tacilytics.test ' + (process.env.IP || '172.21.0.4') + ', MAP taci-wp.test ' + (process.env.WP || '127.0.0.1:8931') + ''] }); const ctx = await b.newContext({ viewport: { width: 1280, height: 900 }, locale: 'en-US' }); const p = await ctx.newPage();
   const errs = []; p.on('pageerror', (e) => errs.push(e.message)); p.on('console', (m) => { if (m.type() === 'error') errs.push(m.text()); });
   await p.goto(BASE + '/wp-login.php'); await p.fill('#user_login', 'admin'); await p.fill('#user_pass', 'taci-test-pw'); await p.click('#wp-submit'); await p.waitForURL(/wp-admin/);
   // notice on dashboard while not set up

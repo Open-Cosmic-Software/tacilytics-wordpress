@@ -44,7 +44,8 @@ This plugin uses the Tacilytics server whose address you enter in the settings. 
 * What is sent from the visitor's browser: page path, referrer, UTM parameters, browser language and time zone, time on page and scroll depth, and, if enabled, the events listed above. The server sees the IP address and user agent to compute the daily visitor hash, the country, browser and device type. The IP address is not stored.
 * What is sent from WordPress: the API key you enter and the site domain, to read statistics for the dashboard widget.
 * The plugin never contacts tacilytics.com or any other server than the one you entered. A hosted version (Tacilytics Cloud) is planned but not available; this version of the plugin cannot connect to it. When it opens, a plugin update will add it here together with its terms of service and privacy policy.
-* Tacilytics privacy policy: https://tacilytics.com/privacy
+* Tacilytics terms of use: https://tacilytics.com/terms/
+* Tacilytics privacy policy: https://tacilytics.com/privacy/
 
 == Installation ==
 

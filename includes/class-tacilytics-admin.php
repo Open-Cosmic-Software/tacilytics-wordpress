@@ -191,8 +191,8 @@ final class Tacilytics_Admin {
 	}
 
 	/**
-	 * Whether Tacilytics Cloud accepts sign-ups. Flipped in a later plugin release once the
-	 * service is live; until then the plugin never contacts the Cloud and offers no Cloud setup.
+	 * Whether the Cloud option is offered. On since 1.0.0 (the Cloud opened before the first release);
+	 * a site can hide it with the filter, e.g. an agency that only uses its own server.
 	 *
 	 * @return bool
 	 */
@@ -202,7 +202,7 @@ final class Tacilytics_Admin {
 		 *
 		 * @param bool $open Cloud open for sign-ups.
 		 */
-		return (bool) apply_filters( 'tacilytics_cloud_open', false );
+		return (bool) apply_filters( 'tacilytics_cloud_open', true );
 	}
 
 	/**
@@ -224,7 +224,7 @@ final class Tacilytics_Admin {
 				<span class="tacilytics-choice-icon dashicons dashicons-cloud" aria-hidden="true"></span>
 				<strong><?php esc_html_e( 'Tacilytics Cloud', 'tacilytics' ); ?></strong>
 				<span><?php esc_html_e( 'We host it for you in Germany. Nothing to install or maintain.', 'tacilytics' ); ?></span>
-				<span class="tacilytics-price"><?php esc_html_e( '90 days free, then €1.99 per site per month', 'tacilytics' ); ?></span>
+				<span class="tacilytics-price"><?php esc_html_e( '90 days free, then €1.99 per site per month or €9.99 per year', 'tacilytics' ); ?></span>
 				<span class="tacilytics-choice-cta"><?php esc_html_e( 'Use Tacilytics Cloud →', 'tacilytics' ); ?></span>
 			</a>
 			<?php else : ?>
@@ -283,7 +283,7 @@ final class Tacilytics_Admin {
 	}
 
 	/**
-	 * Cloud setup. The Cloud service is not open yet, so this explains and stays honest.
+	 * Cloud setup: domain here, account at cloud.tacilytics.com.
 	 *
 	 * @param array $s Settings.
 	 */
@@ -300,8 +300,8 @@ final class Tacilytics_Admin {
 			<h2><?php esc_html_e( 'Tacilytics Cloud', 'tacilytics' ); ?></h2>
 			<ul class="tacilytics-checks">
 				<li><?php esc_html_e( 'Hosted in Germany, data processing agreement included', 'tacilytics' ); ?></li>
-				<li><?php esc_html_e( 'Up to 50,000 page views per site and month for €1.99', 'tacilytics' ); ?></li>
-				<li><?php esc_html_e( 'First 90 days free, no credit card needed to start', 'tacilytics' ); ?></li>
+				<li><?php esc_html_e( 'Up to 50,000 page views per site and month, €1.99 per month or €9.99 per year', 'tacilytics' ); ?></li>
+				<li><?php esc_html_e( 'First 90 days free, nothing is charged before they end', 'tacilytics' ); ?></li>
 				<li><?php esc_html_e( 'Cancel any time, export your data as CSV', 'tacilytics' ); ?></li>
 			</ul>
 			<?php if ( ! $open ) : ?>
@@ -314,7 +314,15 @@ final class Tacilytics_Admin {
 					<table class="form-table" role="presentation">
 						<?php self::field_domain( $s ); ?>
 					</table>
-					<p class="description"><?php esc_html_e( 'After saving, create your free Cloud account with this domain. Your API key is shown in the Cloud dashboard.', 'tacilytics' ); ?></p>
+					<p class="description">
+						<?php
+						printf(
+							/* translators: %s: link to the Cloud sign-up page */
+							esc_html__( 'Create your Cloud account with this domain at %s, then save here. Tracking starts as soon as both are done.', 'tacilytics' ),
+							'<a href="' . esc_url( TACILYTICS_CLOUD_URL . '/signup' ) . '" target="_blank" rel="noopener noreferrer">' . esc_html( preg_replace( '#^https?://#', '', TACILYTICS_CLOUD_URL ) ) . '/signup</a>'
+						);
+						?>
+					</p>
 					<?php submit_button( __( 'Connect to Tacilytics Cloud', 'tacilytics' ) ); ?>
 				</form>
 			<?php endif; ?>

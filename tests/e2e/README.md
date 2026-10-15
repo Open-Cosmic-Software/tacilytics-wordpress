@@ -3,7 +3,7 @@
 They run a throw-away WordPress + MariaDB and a throw-away Tacilytics server in one Docker network,
 then drive a real browser:
 
-- `wp.js` – setup flow (choice, Cloud tile not selectable while closed, `?mode=cloud` shows no Cloud setup, bad URL rejected, connect, masked API key, connection test, dashboard widget, admin not counted)
+- `wp.js` – setup flow (choice, Cloud tile opens the Cloud setup with the sign-up link, bad URL rejected, connect, masked API key, connection test, dashboard widget, admin not counted)
 - `front.js` – visitor page view, download, outbound, search with / without results, 404, no cookies, editor not counted, own `?tacilytics=off` respected (also across a role change), admin → subscriber counted again, attribute values with `$0` / `\1` kept literally (needs `mu/taci-test.php`)
 - `woo.js` – WooCommerce checkout: one Purchase event with value / currency / items, no customer data, not counted twice (reload, other session, 10 parallel claims), blocked tracker → order stays unclaimed
 

@@ -7,7 +7,7 @@ WordPress plugin for [Tacilytics](https://github.com/Open-Cosmic-Software/tacily
 - WooCommerce: one `Purchase` event per order, with value, currency and items, no customer data.
 - Dashboard widget with today's numbers (read-only API key).
 
-The plugin connects to **your own** Tacilytics server. A hosted version (Tacilytics Cloud) is planned and not available yet; the plugin does not contact it.
+The plugin connects to your own Tacilytics server or to [Tacilytics Cloud](https://cloud.tacilytics.com/signup) (hosted in Germany).
 
 Requires WordPress 6.3+, PHP 7.4+. User documentation: [`readme.txt`](readme.txt).
 

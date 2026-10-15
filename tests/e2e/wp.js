@@ -14,11 +14,12 @@ const ok = []; const bad = []; const t = (name, cond, info) => (cond ? ok : bad)
   await p.goto(BASE + '/wp-admin/options-general.php?page=tacilytics');
   t('two choices', await p.locator('.tacilytics-choice').count() === 2);
   await p.screenshot({ path: OUT + '1-choice.png', fullPage: true });
-  t('cloud tile is not a link (closed)', (await p.locator('a.tacilytics-choice-cloud').count()) === 0 && (await p.locator('.tacilytics-choice-cloud.is-disabled').count()) === 1);
-  await p.goto(BASE + '/wp-admin/options-general.php?page=tacilytics&mode=cloud');
-  t('?mode=cloud shows no Cloud setup', (await p.locator('text=Connect to Tacilytics Cloud').count()) === 0 && (await p.locator('.tacilytics-choice').count()) === 2);
+  // Cloud: the tile opens the Cloud setup (domain + link to cloud.tacilytics.com/signup); not saved here, self-hosted is tested below
+  t('cloud tile is a link', (await p.locator('a.tacilytics-choice-cloud').count()) === 1);
+  await p.click('a.tacilytics-choice-cloud'); await p.waitForLoadState();
+  t('cloud setup shows sign-up link', (await p.locator('a[href="https://cloud.tacilytics.com/signup"]').count()) === 1 && (await p.locator('input[type=submit][value="Connect to Tacilytics Cloud"]').count()) === 1);
   await p.screenshot({ path: OUT + '2-cloud.png', fullPage: true });
-  await p.click('.tacilytics-choice >> text=Connect my server'); await p.waitForLoadState();
+  await p.goto(BASE + '/wp-admin/options-general.php?page=tacilytics&mode=self'); await p.waitForLoadState();
   // invalid URL first
   await p.fill('#tacilytics-server', 'ftp://evil.example.com/x?y=1'); await p.fill('#tacilytics-domain', 'taci-wp.test');
   await p.click('#submit'); await p.waitForLoadState();

@@ -158,7 +158,8 @@ final class Tacilytics_Admin {
 		$s = Tacilytics_Settings::get();
 		echo '<div class="wrap tacilytics-wrap">';
 		echo '<h1 class="tacilytics-title"><span class="tacilytics-logo" aria-hidden="true"></span>' . esc_html__( 'Tacilytics', 'tacilytics' ) . '</h1>';
-		settings_errors( Tacilytics_Settings::OPTION );
+		// Pages under Settings get their settings errors printed by WordPress (options-head.php);
+		// calling settings_errors() here as well would show every message twice.
 		self::render_test_result();
 
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- only switches which form is shown.
@@ -362,7 +363,7 @@ final class Tacilytics_Admin {
 						<?php foreach ( $roles as $role => $label ) : ?>
 							<label class="tacilytics-role"><input type="checkbox" name="<?php echo esc_attr( $opt ); ?>[exclude_roles][]" value="<?php echo esc_attr( $role ); ?>" <?php checked( in_array( $role, (array) $s['exclude_roles'], true ) ); ?>> <?php echo esc_html( translate_user_role( $label ) ); ?></label>
 						<?php endforeach; ?>
-						<p class="description"><?php esc_html_e( 'Visits of logged-in users with these roles are not counted, also on cached pages. The browser is remembered until the user logs in with another role.', 'tacilytics' ); ?></p>
+						<p class="description"><?php esc_html_e( 'Visits of logged-in users with these roles are not counted, also on cached pages. Takes effect on the next visit while logged in. The browser stays excluded after logout until someone logs in there with a role that is counted.', 'tacilytics' ); ?></p>
 					</fieldset></td>
 				</tr>
 				<tr>

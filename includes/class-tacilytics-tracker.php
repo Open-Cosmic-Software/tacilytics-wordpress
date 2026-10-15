@@ -141,6 +141,8 @@ final class Tacilytics_Tracker {
 		}
 		$excluded = (array) Tacilytics_Settings::value( 'exclude_roles' );
 		$skip     = (bool) array_intersect( $excluded, (array) wp_get_current_user()->roles );
-		return '(function(){try{var s=window.localStorage;if(' . ( $skip ? 'true' : 'false' ) . '){s.setItem("tacilytics_ignore","1");s.setItem("tacilytics_wp","1");}else if(s.getItem("tacilytics_wp")==="1"){s.removeItem("tacilytics_ignore");s.removeItem("tacilytics_wp");}}catch(e){}})();';
+		// Excluded: only take over if the visitor has not opted out themselves; then the flag is ours.
+		// Allowed again: remove only a flag we set. A visitor's own ?tacilytics=off always stays.
+		return '(function(){try{var s=window.localStorage;if(' . ( $skip ? 'true' : 'false' ) . '){if(s.getItem("tacilytics_ignore")!=="1"){s.setItem("tacilytics_ignore","1");s.setItem("tacilytics_wp","1");}}else if(s.getItem("tacilytics_wp")==="1"){s.removeItem("tacilytics_ignore");s.removeItem("tacilytics_wp");}}catch(e){}})();';
 	}
 }

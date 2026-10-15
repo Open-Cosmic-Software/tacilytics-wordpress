@@ -6,8 +6,8 @@ const ok = [], bad = []; const t = (n, c, i) => (c ? ok : bad).push(n + (c ? '' 
 (async () => {
   const b = await chromium.launch({ args: ['--host-resolver-rules=MAP tacilytics.test ' + IP + ', MAP taci-wp.test 127.0.0.1:8931'] });
   const { execFileSync } = require('child_process');
-  let since = 0; const hitDb = () => JSON.parse(execFileSync('sqlite3', ['-json', '' + (process.env.TACI_DB || '/tmp/taci-wptest/app/t.db') + '', `select name n, path p, props pr from events where id > ${since} order by id`], { encoding: 'utf8' }) || '[]').map((x) => ({ ...x, pr: x.pr ? JSON.parse(x.pr) : null }));
-  const mark = () => { since = Number(execFileSync('sqlite3', ['' + (process.env.TACI_DB || '/tmp/taci-wptest/app/t.db') + '', 'select coalesce(max(id),0) from events'], { encoding: 'utf8' }).trim()); };
+  let since = 0; const hitDb = () => JSON.parse(execFileSync('sqlite3', ['-json', (process.env.TACI_DB || '/tmp/taci-wptest/app/t.db'), `select name n, path p, props pr from events where id > ${since} order by id`], { encoding: 'utf8' }) || '[]').map((x) => ({ ...x, pr: x.pr ? JSON.parse(x.pr) : null }));
+  const mark = () => { since = Number(execFileSync('sqlite3', [(process.env.TACI_DB || '/tmp/taci-wptest/app/t.db'), 'select coalesce(max(id),0) from events'], { encoding: 'utf8' }).trim()); };
   const hit = { get length() { return hitDb().length; }, set length(v) { mark(); }, filter: (f) => hitDb().filter(f) };
   const watch = () => {};
   const login = async (p, u, pw) => { await p.goto(BASE + '/wp-login.php'); await p.fill('#user_login', u); await p.fill('#user_pass', pw); await p.click('#wp-submit'); await p.waitForLoadState(); };
@@ -63,6 +63,16 @@ const ok = [], bad = []; const t = (n, c, i) => (c ? ok : bad).push(n + (c ? '' 
   await p.goto(BASE + '/'); await p.waitForTimeout(800);
   t('admin→subscriber: counted again', pv().length === 1, JSON.stringify(hitDb()) + ' ls=' + (await p.evaluate(() => localStorage.getItem('tacilytics_ignore'))));
   await ctx.close();
+  // 5) Kiro (a): own ?tacilytics=off, then logged in as excluded admin, then as counted subscriber → own opt-out stays
+  ctx = await b.newContext({ userAgent: UA }); p = await ctx.newPage();
+  await p.goto(BASE + '/?tacilytics=off'); await p.waitForTimeout(300);
+  await login(p, 'admin', 'taci-test-pw'); await p.goto(BASE + '/'); await p.waitForTimeout(300);
+  const wpAfterAdmin = await p.evaluate(() => localStorage.getItem('tacilytics_wp'));
+  await p.goto(BASE + '/wp-login.php?action=logout'); await p.click('a:has-text("log out")').catch(() => {}); await p.waitForLoadState();
+  await login(p, 'sub', 'sub-pass-123'); await p.goto(BASE + '/'); await p.waitForTimeout(300);
+  t('own opt-out survives excluded→counted role', (await p.evaluate(() => localStorage.getItem('tacilytics_ignore'))) === '1' && wpAfterAdmin === null, 'wp after admin=' + wpAfterAdmin + ' ignore=' + (await p.evaluate(() => localStorage.getItem('tacilytics_ignore'))));
+  await ctx.close();
+
   console.log('OK ' + ok.length + ' / BAD ' + bad.length); bad.forEach((x) => console.log('  ✗ ' + x));
   await b.close();
 })().catch((e) => { console.error(e); process.exit(1); });

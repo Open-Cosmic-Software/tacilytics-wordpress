@@ -1,7 +1,7 @@
 === Tacilytics – Privacy-Friendly Analytics ===
 Contributors: opencosmicsoftware
 Tags: analytics, statistics, privacy, cookieless, woocommerce
-Requires at least: 6.0
+Requires at least: 6.3
 Tested up to: 7.1
 Requires PHP: 7.4
 Stable tag: 1.0.0
@@ -28,7 +28,7 @@ This plugin connects your WordPress site to a Tacilytics server and adds the tra
 * File downloads (PDF, ZIP, …)
 * Site search: search terms and whether there were results
 * Broken links (404 pages)
-* WooCommerce purchases with revenue: order total, net total, currency and number of items. No order number, no customer data.
+* WooCommerce purchases with revenue: order total, net total, currency and number of items. No order number, no customer data. Each order is counted at most once; if the visitor's browser blocks the tracker, the purchase is not counted. Orders paid later (e.g. bank transfer) count when they are placed.
 
 **Built for real WordPress sites**
 
@@ -45,12 +45,13 @@ This plugin sends page views and events from your visitors' browsers to the Taci
 
 **Self-hosted:** data goes only to the server address you enter. You are the controller and the processor.
 
-**Tacilytics Cloud** (`https://cloud.tacilytics.com`): only used if you choose it during setup.
+**Tacilytics Cloud** (`https://cloud.tacilytics.com`): not available yet. This version of the plugin never contacts it; the Cloud option only shows "coming soon". Once the Cloud opens, a plugin update will enable it and this section will link its terms of service and privacy policy.
+
+For both, this is what the tracker sends:
 
 * What is sent from the visitor's browser: page path, referrer, UTM parameters, browser language and time zone, time on page and scroll depth, and, if enabled, the events listed above. The server sees the IP address and user agent to compute the daily visitor hash, the country, browser and device type. The IP address is not stored.
 * What is sent from WordPress: the API key you enter and the site domain, to read statistics for the dashboard widget.
-* Terms of service: https://tacilytics.com/terms
-* Privacy policy: https://tacilytics.com/privacy
+* Tacilytics privacy policy: https://tacilytics.com/privacy
 
 == Installation ==
 
@@ -67,7 +68,7 @@ Tacilytics sets no cookies. For a normal visitor it writes nothing to the browse
 
 = My own visits are counted. =
 
-Make sure your role is ticked under **Do not count** and visit the site once while logged in. To exclude a browser without logging in, open your site with `?tacilytics=off` (undo with `?tacilytics=on`).
+Make sure your role is ticked under **Do not count** and visit the site once while logged in: the setting takes effect on your next visit as a logged-in user. After you log out, that browser stays excluded until someone logs in there with a role that is counted. To exclude a browser without logging in, open your site with `?tacilytics=off` (undo with `?tacilytics=on`); WordPress never overrides that choice.
 
 = Does it slow my site down? =
 

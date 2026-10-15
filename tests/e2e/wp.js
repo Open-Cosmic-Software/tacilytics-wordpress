@@ -38,6 +38,11 @@ const ok = []; const bad = []; const t = (name, cond, info) => (cond ? ok : bad)
   await p.click('#submit'); await p.waitForLoadState();
   t('masked save keeps key', (await p.inputValue('#tacilytics-api-key')) === masked);
   await p.screenshot({ path: OUT + '4-settings.png', fullPage: true });
+  // Kiro (c): changing the server drops the stored key
+  const cur = await p.inputValue('#tacilytics-server');
+  await p.fill('#tacilytics-server', 'https://other.example.net'); await p.click('#submit'); await p.waitForLoadState();
+  t('server change drops key', (await p.inputValue('#tacilytics-api-key')) === '' && (await p.locator('text=the saved API key was removed').count()) === 1, await p.inputValue('#tacilytics-api-key'));
+  await p.fill('#tacilytics-server', cur); await p.fill('#tacilytics-api-key', fs.readFileSync(process.env.KEY_FILE || 'key', 'utf8').trim()); await p.click('#submit'); await p.waitForLoadState();
   await p.click('input[value="Test connection"]'); await p.waitForLoadState();
   const notes = await p.locator('.notice').allInnerTexts();
   t('test: tracker ok', notes.some((n) => n.includes('Tracker script reachable')), notes.join(' | '));

@@ -15,10 +15,11 @@ global $wpdb;
 // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 $wpdb->query(
 	$wpdb->prepare(
-		"DELETE FROM {$wpdb->options} WHERE option_name LIKE %s OR option_name LIKE %s OR option_name LIKE %s OR option_name LIKE %s",
+		"DELETE FROM {$wpdb->options} WHERE option_name LIKE %s OR option_name LIKE %s OR option_name LIKE %s OR option_name LIKE %s OR option_name LIKE %s",
 		$wpdb->esc_like( '_transient_tacilytics_' ) . '%',
 		$wpdb->esc_like( '_transient_timeout_tacilytics_' ) . '%',
 		$wpdb->esc_like( '_site_transient_tacilytics_' ) . '%',
-		$wpdb->esc_like( '_site_transient_timeout_tacilytics_' ) . '%'
+		$wpdb->esc_like( '_site_transient_timeout_tacilytics_' ) . '%',
+		$wpdb->esc_like( 'tacilytics_p_' ) . '%' // Per-order purchase locks.
 	)
 );

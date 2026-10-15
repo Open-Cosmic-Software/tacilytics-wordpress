@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tacilytics 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-15 12:59+0000\n"
+"POT-Creation-Date: 2026-10-15 13:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: tacilytics.php:66
+#: tacilytics.php:80
 msgid "Settings"
 msgstr ""
 
@@ -50,212 +50,214 @@ msgstr ""
 msgid "API key works: %d visitors today."
 msgstr ""
 
-#: includes/class-tacilytics-admin.php:197
+#: includes/class-tacilytics-admin.php:198
 msgid ""
 "Cookieless analytics: no cookies, no IP addresses stored, no personal "
 "profiles. Where should your statistics live?"
 msgstr ""
 
-#: includes/class-tacilytics-admin.php:201
-#: includes/class-tacilytics-admin.php:319
+#: includes/class-tacilytics-admin.php:202
+#: includes/class-tacilytics-admin.php:320
 msgid "Self-hosted"
 msgstr ""
 
-#: includes/class-tacilytics-admin.php:202
+#: includes/class-tacilytics-admin.php:203
 msgid ""
 "You run Tacilytics on your own server (open source, MIT). Free forever, your "
 "data never leaves your server."
 msgstr ""
 
-#: includes/class-tacilytics-admin.php:203
+#: includes/class-tacilytics-admin.php:204
 msgid "Connect my server →"
 msgstr ""
 
-#: includes/class-tacilytics-admin.php:207
-#: includes/class-tacilytics-admin.php:274
+#: includes/class-tacilytics-admin.php:208
+#: includes/class-tacilytics-admin.php:275
 msgid "Tacilytics Cloud"
 msgstr ""
 
-#: includes/class-tacilytics-admin.php:208
+#: includes/class-tacilytics-admin.php:209
 msgid "We host it for you in Germany. Nothing to install or maintain."
 msgstr ""
 
-#: includes/class-tacilytics-admin.php:209
+#: includes/class-tacilytics-admin.php:210
 msgid "90 days free, then €1.99 per site per month"
 msgstr ""
 
-#: includes/class-tacilytics-admin.php:210
+#: includes/class-tacilytics-admin.php:211
 msgid "Use Tacilytics Cloud →"
 msgstr ""
 
-#: includes/class-tacilytics-admin.php:224
+#: includes/class-tacilytics-admin.php:225
 msgid "Back"
 msgstr ""
 
-#: includes/class-tacilytics-admin.php:232
+#: includes/class-tacilytics-admin.php:233
 msgid "Connect your Tacilytics server"
 msgstr ""
 
-#: includes/class-tacilytics-admin.php:234
+#: includes/class-tacilytics-admin.php:235
 msgid "In your Tacilytics dashboard, add this site (the domain below)."
 msgstr ""
 
-#: includes/class-tacilytics-admin.php:235
+#: includes/class-tacilytics-admin.php:236
 msgid "Enter the address of your dashboard here and save."
 msgstr ""
 
-#: includes/class-tacilytics-admin.php:244
+#: includes/class-tacilytics-admin.php:245
 msgid "Save and start counting"
 msgstr ""
 
 #. translators: %s: link to the GitHub repository
-#: includes/class-tacilytics-admin.php:250
+#: includes/class-tacilytics-admin.php:251
 #, php-format
 msgid "No server yet? Tacilytics is open source: %s"
 msgstr ""
 
-#: includes/class-tacilytics-admin.php:276
+#: includes/class-tacilytics-admin.php:277
 msgid "Hosted in Germany, data processing agreement included"
 msgstr ""
 
-#: includes/class-tacilytics-admin.php:277
+#: includes/class-tacilytics-admin.php:278
 msgid "Up to 50,000 page views per site and month for €1.99"
 msgstr ""
 
-#: includes/class-tacilytics-admin.php:278
+#: includes/class-tacilytics-admin.php:279
 msgid "First 90 days free, no credit card needed to start"
 msgstr ""
 
-#: includes/class-tacilytics-admin.php:279
+#: includes/class-tacilytics-admin.php:280
 msgid "Cancel any time, export your data as CSV"
 msgstr ""
 
-#: includes/class-tacilytics-admin.php:282
+#: includes/class-tacilytics-admin.php:283
 msgid "Coming soon."
 msgstr ""
 
-#: includes/class-tacilytics-admin.php:282
+#: includes/class-tacilytics-admin.php:283
 msgid ""
 "Tacilytics Cloud is opening shortly. Until then you can use your own server, "
 "it takes about five minutes."
 msgstr ""
 
-#: includes/class-tacilytics-admin.php:283
+#: includes/class-tacilytics-admin.php:284
 msgid "Use my own server instead"
 msgstr ""
 
-#: includes/class-tacilytics-admin.php:291
+#: includes/class-tacilytics-admin.php:292
 msgid ""
 "After saving, create your free Cloud account with this domain. Your API key "
 "is shown in the Cloud dashboard."
 msgstr ""
 
-#: includes/class-tacilytics-admin.php:292
+#: includes/class-tacilytics-admin.php:293
 msgid "Connect to Tacilytics Cloud"
 msgstr ""
 
 #. translators: 1: domain, 2: server
-#: includes/class-tacilytics-admin.php:314
+#: includes/class-tacilytics-admin.php:315
 #, php-format
 msgid "Counting %1$s on %2$s"
 msgstr ""
 
-#: includes/class-tacilytics-admin.php:319
+#: includes/class-tacilytics-admin.php:320
 msgid "Cloud"
 msgstr ""
 
-#: includes/class-tacilytics-admin.php:326
+#: includes/class-tacilytics-admin.php:327
 msgid "Connection"
 msgstr ""
 
-#: includes/class-tacilytics-admin.php:335
+#: includes/class-tacilytics-admin.php:336
 msgid "API key (optional)"
 msgstr ""
 
-#: includes/class-tacilytics-admin.php:338
+#: includes/class-tacilytics-admin.php:339
 msgid ""
 "Shows your numbers on the WordPress dashboard. Create a read-only key in "
 "Tacilytics under Settings → Security → API keys. The key stays on your "
 "server and is never sent to visitors."
 msgstr ""
 
-#: includes/class-tacilytics-admin.php:343
+#: includes/class-tacilytics-admin.php:344
 msgid "What to count"
 msgstr ""
 
-#: includes/class-tacilytics-admin.php:346
+#: includes/class-tacilytics-admin.php:347
 msgid "Automatic events"
 msgstr ""
 
-#: includes/class-tacilytics-admin.php:349
+#: includes/class-tacilytics-admin.php:350
 msgid "Clicks on links to other websites"
 msgstr ""
 
-#: includes/class-tacilytics-admin.php:350
+#: includes/class-tacilytics-admin.php:351
 msgid "File downloads (PDF, ZIP, …)"
 msgstr ""
 
-#: includes/class-tacilytics-admin.php:351
+#: includes/class-tacilytics-admin.php:352
 msgid "Site search: search terms and whether there were results"
 msgstr ""
 
-#: includes/class-tacilytics-admin.php:352
+#: includes/class-tacilytics-admin.php:353
 msgid "Broken links (404 pages)"
 msgstr ""
 
-#: includes/class-tacilytics-admin.php:354
+#: includes/class-tacilytics-admin.php:355
 msgid "WooCommerce purchases with revenue (no customer data)"
 msgstr ""
 
-#: includes/class-tacilytics-admin.php:360
+#: includes/class-tacilytics-admin.php:361
 msgid "Do not count"
 msgstr ""
 
-#: includes/class-tacilytics-admin.php:365
+#: includes/class-tacilytics-admin.php:366
 msgid ""
 "Visits of logged-in users with these roles are not counted, also on cached "
-"pages. The browser is remembered until the user logs in with another role."
+"pages. Takes effect on the next visit while logged in. The browser stays "
+"excluded after logout until someone logs in there with a role that is "
+"counted."
 msgstr ""
 
-#: includes/class-tacilytics-admin.php:369
+#: includes/class-tacilytics-admin.php:370
 msgid "Privacy"
 msgstr ""
 
-#: includes/class-tacilytics-admin.php:371
+#: includes/class-tacilytics-admin.php:372
 msgid "Respect \"Do Not Track\" and Global Privacy Control"
 msgstr ""
 
-#: includes/class-tacilytics-admin.php:382
+#: includes/class-tacilytics-admin.php:383
 msgid "Test connection"
 msgstr ""
 
-#: includes/class-tacilytics-admin.php:384
+#: includes/class-tacilytics-admin.php:385
 msgid "Open dashboard"
 msgstr ""
 
-#: includes/class-tacilytics-admin.php:385
+#: includes/class-tacilytics-admin.php:386
 msgid ""
 "Disconnect this site? Tracking stops until you set it up again. Data on the "
 "server is not deleted."
 msgstr ""
 
-#: includes/class-tacilytics-admin.php:388
+#: includes/class-tacilytics-admin.php:389
 msgid "Disconnect"
 msgstr ""
 
-#: includes/class-tacilytics-admin.php:402
+#: includes/class-tacilytics-admin.php:403
 msgid "Server address"
 msgstr ""
 
-#: includes/class-tacilytics-admin.php:405
+#: includes/class-tacilytics-admin.php:406
 msgid "The address of your Tacilytics dashboard."
 msgstr ""
 
-#: includes/class-tacilytics-admin.php:419
+#: includes/class-tacilytics-admin.php:420
 msgid "Site domain"
 msgstr ""
 
-#: includes/class-tacilytics-admin.php:422
+#: includes/class-tacilytics-admin.php:423
 msgid "Must match the site in Tacilytics exactly (without www.)."
 msgstr ""
 
@@ -342,22 +344,28 @@ msgstr ""
 msgid "Visitors per day"
 msgstr ""
 
-#: includes/class-tacilytics-dashboard-widget.php:128
+#: includes/class-tacilytics-dashboard-widget.php:146
 msgid "No data yet"
 msgstr ""
 
-#: includes/class-tacilytics-settings.php:172
+#: includes/class-tacilytics-settings.php:191
 msgid ""
 "The server address must start with https:// (http is only allowed for "
 "localhost)."
 msgstr ""
 
-#: includes/class-tacilytics-settings.php:181
+#: includes/class-tacilytics-settings.php:200
 msgid "Please enter a valid domain, e.g. example.com."
 msgstr ""
 
-#: includes/class-tacilytics-settings.php:200
+#: includes/class-tacilytics-settings.php:221
 msgid ""
 "API keys start with tk_. Create a read-only key under Settings → Security in "
 "your Tacilytics dashboard."
+msgstr ""
+
+#: includes/class-tacilytics-settings.php:247
+msgid ""
+"The server changed, so the saved API key was removed. Please add a key from "
+"the new server."
 msgstr ""

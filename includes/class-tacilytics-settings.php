@@ -79,7 +79,16 @@ final class Tacilytics_Settings {
 	 * @return string
 	 */
 	public static function server_base() {
-		$s = self::get();
+		return self::base_for( self::get() );
+	}
+
+	/**
+	 * Server base for a given settings array.
+	 *
+	 * @param array $s Settings.
+	 * @return string
+	 */
+	public static function base_for( $s ) {
 		if ( 'cloud' === $s['mode'] ) {
 			return untrailingslashit( TACILYTICS_CLOUD_URL );
 		}
@@ -110,8 +119,11 @@ final class Tacilytics_Settings {
 		if ( '' === $url ) {
 			return '';
 		}
+		if ( preg_match( '#^[a-z][a-z0-9+.-]*:#i', $url ) && ! preg_match( '#^https?://#i', $url ) ) {
+			return ''; // Another scheme (ftp:, javascript:, file:, …).
+		}
 		if ( ! preg_match( '#^https?://#i', $url ) ) {
-			$url = 'https://' . $url;
+			$url = 'https://' . $url; // "analytics.example.com" without scheme.
 		}
 		$parts = wp_parse_url( $url );
 		if ( empty( $parts['host'] ) || ! empty( $parts['user'] ) || ! empty( $parts['pass'] ) || isset( $parts['query'] ) || isset( $parts['fragment'] ) ) {
@@ -119,6 +131,13 @@ final class Tacilytics_Settings {
 		}
 		$scheme = strtolower( $parts['scheme'] );
 		$host   = strtolower( $parts['host'] );
+		$is_ip6 = (bool) preg_match( '/^\[[0-9a-f:.]+\]$/', $host );
+		if ( ! $is_ip6 && ! preg_match( '/^(?=.{1,253}$)([a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?)(\.[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?)*$/', $host ) ) {
+			return '';
+		}
+		if ( isset( $parts['path'] ) && false !== strpos( $parts['path'], '//' ) ) {
+			return '';
+		}
 		$local  = in_array( $host, array( 'localhost', '127.0.0.1', '[::1]' ), true );
 		/**
 		 * Allow a plain-http server address (e.g. inside a private network). Off by default:
@@ -191,6 +210,8 @@ final class Tacilytics_Settings {
 		}
 		$out['mode'] = $mode;
 
+		$server_changed = Tacilytics_Settings::base_for( $out ) !== Tacilytics_Settings::base_for( $old );
+
 		if ( isset( $input['api_key'] ) ) {
 			$key = trim( sanitize_text_field( wp_unslash( $input['api_key'] ) ) );
 			// Leaving the masked field untouched keeps the stored key.
@@ -218,6 +239,12 @@ final class Tacilytics_Settings {
 			foreach ( $flags as $flag ) {
 				$out[ $flag ] = empty( $input[ $flag ] ) ? 0 : 1;
 			}
+		}
+
+		// A key belongs to one server. Never send the old key to a new address.
+		if ( $server_changed && '' !== $old['api_key'] && $out['api_key'] === $old['api_key'] ) {
+			$out['api_key'] = '';
+			add_settings_error( self::OPTION, 'api_key_reset', __( 'The server changed, so the saved API key was removed. Please add a key from the new server.', 'tacilytics' ), 'warning' );
 		}
 
 		if ( $out['api_key'] !== $old['api_key'] || $out['server_url'] !== $old['server_url'] || $out['domain'] !== $old['domain'] || $out['mode'] !== $old['mode'] ) {

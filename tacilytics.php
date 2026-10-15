@@ -4,7 +4,7 @@
  * Plugin URI:        https://tacilytics.com/wordpress
  * Description:       Cookieless, privacy-friendly analytics for WordPress and WooCommerce. Use your own self-hosted Tacilytics server or Tacilytics Cloud. No cookies, no consent banner needed for the tracker.
  * Version:           1.0.0
- * Requires at least: 6.0
+ * Requires at least: 6.3
  * Requires PHP:      7.4
  * Author:            Open Cosmic Software
  * Author URI:        https://github.com/Open-Cosmic-Software
